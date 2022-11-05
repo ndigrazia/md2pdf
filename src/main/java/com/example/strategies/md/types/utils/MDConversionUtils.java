@@ -31,7 +31,7 @@ public class MDConversionUtils {
             case HTML:        
                 return new MDConverterHtmlStr(new MDConverterBasicStr(type));
             default:
-                throw new RuntimeException("Conversion unknown!!!");
+                throw new RuntimeException("Conversion UNKNOWN!!!");
         }
     }
    

@@ -26,9 +26,9 @@ public class MDConverterBasicStr implements MDConverterItf {
         String result = FileUtils.getAbsolutePathWithNewExtension(source, 
             FileType.TMP);
         
-        LOGGER.info("Changing inner references to {}...", type);
+        LOGGER.debug("Changing inner references to {}...", type);
         generateTmpFileWithInnerRefMd2To(source, result, type);  
-        LOGGER.info("Inner references changed.");
+        LOGGER.debug("Inner references CHANGED.");
 
         return result;
     }

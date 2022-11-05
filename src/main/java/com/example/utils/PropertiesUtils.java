@@ -85,8 +85,5 @@ public class PropertiesUtils {
             return false;
         }
     }
-
-    
-
    
 }

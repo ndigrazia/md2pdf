@@ -60,12 +60,14 @@ public class MDConverterStr implements ConverterItf {
                         FileUtils.copyFileToTmpWithoutRootDirectory(
                             tmpDirName, result, pathRoot);
                     } else {
-                        LOGGER.info("The copied files was not selected!");
+                        LOGGER.info("The copied files was NOT SELECTED!");
                     }
              }
+
+             LOGGER.info("Conversion COMPLETED!", source);
             
         } else {
-            LOGGER.info("File {} excluded!!!", source);
+            LOGGER.debug("File {} EXCLUDED!!!", source);
         }
     }
  

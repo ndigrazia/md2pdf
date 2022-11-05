@@ -37,6 +37,7 @@ public class FileUtils {
         if (file != null && file.exists()) {
          return true;
         }
+        LOGGER.error("File {} NO FOUND. ", file.getAbsolutePath());
         return false;
     }
 
@@ -78,6 +79,7 @@ public class FileUtils {
             org.apache.commons.io.FileUtils.copyFile(source, target);
             return true;
         } catch (IOException e) {
+            LOGGER.error("ERROR Copying file {}.", source.getName(), e);
             return false;
         }
     }
@@ -86,9 +88,9 @@ public class FileUtils {
      String source, String root) {
        String target = tmpDirName + getPathWithoutRootPath(source, root);
        
-       LOGGER.info("copying pdf file to {} ...", target);
+       LOGGER.info("Copying file to {} ...", target);
        Boolean r = FileUtils.copyFile(new File(source), new File(target));
-       LOGGER.info("Pdf file copied [{}].", r);
+       LOGGER.info("File COPIED [{}].", r);
    }
 
     public enum FileType { 

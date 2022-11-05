@@ -47,7 +47,6 @@ public class Markdown2PdfMain {
                 for(int i=0; i<contents.length; i++) 
                     readAndConvertAllFiles(contents[i], str);
             }
-
         }
     }
 
@@ -57,10 +56,10 @@ public class Markdown2PdfMain {
             LOGGER.info("Launch of the conversion process. {}", 
             GregorianCalendar.getInstance().getTime());
             md2pdf.readAndConvert();
-            LOGGER.info("Conversion completed. {} ", 
+            LOGGER.info("Conversion COMPLETED. {} ", 
                 GregorianCalendar.getInstance().getTime());
         }catch(Exception e) {
-            LOGGER.error("Conversion failed. {} ", 
+            LOGGER.error("Conversion FAILED. {} ", 
                 GregorianCalendar.getInstance().getTime(), e);
         }
     }

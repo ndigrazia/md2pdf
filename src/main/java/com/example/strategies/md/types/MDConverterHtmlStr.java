@@ -42,17 +42,17 @@ public class MDConverterHtmlStr extends MDConverterDecorator {
         String html = FileUtils.getAbsolutePathWithNewExtension(
             result, fileType);
         
-        LOGGER.info("Generating html file...");
+        LOGGER.debug("Generating html file...");
         generateHmlFromMD(result, html);
-        LOGGER.info("Html file generated.");
+        LOGGER.debug("Html file GENERATED.");
 
         return html;
     }
 
     public void convert(String source, String target) throws IOException {
-        LOGGER.info("Generating html file...");
+        LOGGER.debug("Generating html file...");
         generateHmlFromMD(source, target);
-        LOGGER.info("Html file generated.");
+        LOGGER.debug("Html file GENERATED.");
     }
 
     private void generateHmlFromMD(String source, 

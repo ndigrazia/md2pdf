@@ -22,7 +22,9 @@ import java.nio.charset.Charset;
 
 public class MDConverterPdfStr extends MDConverterDecorator {
 
-    public static final String CHARSET_NAME = "UTF-8";
+    private static final String CHARSET_NAME = "UTF-8";
+
+    private static final String NO_CONTENT = "No Content.";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MDConverterPdfStr.class);
 
@@ -36,9 +38,9 @@ public class MDConverterPdfStr extends MDConverterDecorator {
         String pdf = FileUtils.getAbsolutePathWithNewExtension(
             result, FileType.PDF);
         
-        LOGGER.info("Generating pdf file...");
+        LOGGER.debug("Generating pdf file...");
         generatePdfFromHtml(result, pdf);
-        LOGGER.info("Pdf file generated.");  
+        LOGGER.debug("PDF file GENERATED.");  
     
         return pdf;
     }
@@ -54,15 +56,15 @@ public class MDConverterPdfStr extends MDConverterDecorator {
                 new FileOutputStream(target), props);
         } catch(PdfException e) {
             if(e.getMessage().equals(PdfException.DocumentHasNoPages)) {
-                LOGGER.info("Generating Blank PDF Document...");
+                LOGGER.debug("Generating Blank PDF Document...");
                 //Create empty pdf.
                 PdfWriter writer = new PdfWriter(target);
                 PdfDocument pdfDoc = new PdfDocument(writer);
                 pdfDoc.addNewPage();
                 Document document = new Document(pdfDoc); 
-                document.add(new Paragraph("No Content."));
+                document.add(new Paragraph(NO_CONTENT));
                 document.close();     
-                LOGGER.info("Blank PDF Document completed.");
+                LOGGER.debug("Blank PDF Document COMPLETED.");
             }
             else {
                 throw e;
