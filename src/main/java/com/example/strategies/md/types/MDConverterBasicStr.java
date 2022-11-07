@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ public class MDConverterBasicStr implements MDConverterItf {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MDConverterBasicStr.class);
 
+    private static final String REG_EXP = "^(http|https|ftp)://.*$";
+    
     private FileType type;
 
     public MDConverterBasicStr(FileType type) {
@@ -45,13 +48,15 @@ public class MDConverterBasicStr implements MDConverterItf {
 
         String line;
         while((line = br.readLine()) != null){
-            sbf.append(line.replaceAll(
+            if(!Pattern.matches(REG_EXP, line))  {
+                sbf.append(line.replaceAll(
                 FileType.MD.getExtWithDot(), 
                 type.getExtWithDot()));
 
-            sbf.append("\n");
-            bw.write(sbf.toString());
-            sbf.delete(0, sbf.length());
+                sbf.append("\n");
+                bw.write(sbf.toString());
+                sbf.delete(0, sbf.length());
+            }
         }
         
         bw.flush();

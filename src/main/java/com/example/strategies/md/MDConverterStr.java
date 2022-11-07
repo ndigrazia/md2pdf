@@ -51,23 +51,21 @@ public class MDConverterStr implements ConverterItf {
         //files to convert   
         if(Pattern.matches(REG_EXP_EXT, name)) { 
              LOGGER.info("Processing file {}", source);
-        
              if (!Pattern.matches(properties.getProperty(
                 PropertiesUtils.EXCLUDE_FILES), name)) {
                     String result = str.convert(source);
-                      
                     if(PropertiesUtils.isRequireCopyFiles(properties)) {
                         FileUtils.copyFileToTmpWithoutRootDirectory(
                             tmpDirName, result, pathRoot);
                     } else {
-                        LOGGER.info("The copied files was NOT SELECTED!");
+                        LOGGER.info("Copy feature NOT SELECTED!");
                     }
+                    LOGGER.info("Conversion COMPLETED!");
+             } else {
+                LOGGER.debug("File EXCLUDED!!!");    
              }
-
-             LOGGER.info("Conversion COMPLETED!", source);
-            
         } else {
-            LOGGER.debug("File {} EXCLUDED!!!", source);
+            LOGGER.info("IT IS NOT Markdown File!");
         }
     }
  
